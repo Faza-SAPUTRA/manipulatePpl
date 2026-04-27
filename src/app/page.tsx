@@ -67,52 +67,6 @@ export default function FileManipulator() {
     }
   }, [isLoggedIn]);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (passkey === "sigmaboy1") {
-      gsap.to(loginRef.current, {
-        opacity: 0, scale: 1.1, duration: 0.5, onComplete: () => setIsLoggedIn(true)
-      });
-    } else {
-      alert("Unauthorized Access. Wrong Passkey.");
-      setPasskey("");
-    }
-  };
-
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-[#09090b]">
-        <div ref={loginRef} className="w-full max-w-md bg-black/40 backdrop-blur-3xl border border-white/10 p-8 rounded-3xl shadow-2xl space-y-8">
-          <div className="text-center space-y-4">
-             <div className="mx-auto w-20 h-20 bg-white/5 rounded-full border border-white/10 p-4 shadow-inner overflow-hidden">
-                <img src="/epstein_logo.png" className="w-full h-full object-cover grayscale opacity-50" alt="Lock" />
-             </div>
-             <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">Identity Verification</h2>
-             <p className="text-sm text-white/30">Welcome back, Soldier. Enter your passkey.</p>
-          </div>
-          
-          <form onSubmit={handleLogin} className="space-y-4">
-             <div className="space-y-2">
-                <input 
-                  type="password"
-                  placeholder="Enter Passkey"
-                  value={passkey}
-                  onChange={(e) => setPasskey(e.target.value)}
-                  className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 text-center tracking-widest focus:border-blue-500/50 focus:outline-none transition-all duration-300"
-                />
-             </div>
-             <button type="submit" className="w-full h-12 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-all shadow-xl shadow-white/5">
-                ACCESS SYSTEM
-             </button>
-          </form>
-          <div className="text-center pt-4">
-            <span className="text-[10px] text-white/10 uppercase tracking-[0.2em]">Restricted Area &copy; 2026</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       const selectedFile = acceptedFiles[0];
@@ -223,6 +177,52 @@ export default function FileManipulator() {
       }
     });
   };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passkey === "sigmaboy1") {
+      gsap.to(loginRef.current, {
+        opacity: 0, scale: 1.1, duration: 0.5, onComplete: () => setIsLoggedIn(true)
+      });
+    } else {
+      alert("Unauthorized Access. Wrong Passkey.");
+      setPasskey("");
+    }
+  };
+
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-6 bg-[#09090b]">
+        <div ref={loginRef} className="w-full max-w-md bg-black/40 backdrop-blur-3xl border border-white/10 p-8 rounded-3xl shadow-2xl space-y-8">
+          <div className="text-center space-y-4">
+             <div className="mx-auto w-20 h-20 bg-white/5 rounded-full border border-white/10 p-4 shadow-inner overflow-hidden">
+                <img src="/epstein_logo.png" className="w-full h-full object-cover grayscale opacity-50" alt="Lock" />
+             </div>
+             <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">Identity Verification</h2>
+             <p className="text-sm text-white/30">Welcome back, Soldier. Enter your passkey.</p>
+          </div>
+          
+          <form onSubmit={handleLogin} className="space-y-4">
+             <div className="space-y-2">
+                <input 
+                  type="password"
+                  placeholder="Enter Passkey"
+                  value={passkey}
+                  onChange={(e) => setPasskey(e.target.value)}
+                  className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 text-center tracking-widest focus:border-blue-500/50 focus:outline-none transition-all duration-300"
+                />
+             </div>
+             <button type="submit" className="w-full h-12 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-all shadow-xl shadow-white/5">
+                ACCESS SYSTEM
+             </button>
+          </form>
+          <div className="text-center pt-4">
+            <span className="text-[10px] text-white/10 uppercase tracking-[0.2em]">Restricted Area &copy; 2026</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen py-12 px-6 lg:px-8 flex flex-col items-center justify-center relative overflow-hidden">
